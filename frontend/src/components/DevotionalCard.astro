@@ -1,0 +1,47 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  verseRef: string;
+  lang: 'es' | 'en';
+  readMoreLabel: string;
+}
+
+const { slug, title, excerpt, date, verseRef, lang, readMoreLabel } = Astro.props;
+const basePath = lang === 'es' ? 'devocionales' : 'devotionals';
+---
+
+<article class="group bg-surface rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col">
+  <!-- Color bar -->
+  <div class="h-1 bg-gradient-to-r from-primary to-secondary" aria-hidden="true"></div>
+
+  <div class="p-6 flex flex-col flex-1">
+    <!-- Date + verse ref -->
+    <div class="flex items-center gap-3 mb-3">
+      <time datetime={date} class="text-xs text-muted font-medium">{date}</time>
+      <span class="text-xs text-accent font-semibold">{verseRef}</span>
+    </div>
+
+    <!-- Title -->
+    <h3 class="font-heading text-xl font-semibold text-primary mb-3 group-hover:text-secondary transition-colors leading-snug">
+      {title}
+    </h3>
+
+    <!-- Excerpt -->
+    <p class="text-foreground/70 text-sm leading-relaxed mb-4 flex-1">{excerpt}</p>
+
+    <!-- Read more -->
+    <a
+      href={`/${lang}/${basePath}/${slug}`}
+      class="inline-flex items-center gap-1.5 text-sm font-medium text-secondary hover:text-primary transition-colors mt-auto"
+      aria-label={`${readMoreLabel}: ${title}`}
+    >
+      {readMoreLabel}
+      <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+  </div>
+</article>

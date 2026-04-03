@@ -1,0 +1,28 @@
+---
+interface Props {
+  icon: string;
+  name: string;
+  description: string;
+  href: string;
+}
+
+const { icon, name, description, href } = Astro.props;
+---
+
+<article class="group bg-surface rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:border-secondary/30 transition-all duration-300">
+  <div class="text-4xl mb-4" aria-hidden="true">{icon}</div>
+  <h3 class="font-heading text-xl font-semibold text-primary mb-3 group-hover:text-secondary transition-colors">
+    {name}
+  </h3>
+  <p class="text-foreground/70 text-sm leading-relaxed mb-4">{description}</p>
+  <a
+    href={href}
+    class="inline-flex items-center gap-1.5 text-sm font-medium text-secondary hover:text-primary transition-colors"
+    aria-label={`Conocer más sobre ${name}`}
+  >
+    {name.split(' ')[0] === 'Ministerio' || name.split(' ')[0] === 'Misiones' ? 'Ver ministerio' : 'Learn more'}
+    <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </a>
+</article>

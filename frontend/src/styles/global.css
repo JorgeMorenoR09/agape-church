@@ -1,0 +1,301 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─────────────────────────────────────────── */
+@theme {
+  /* Colors */
+  --color-primary:    #1a46ad;
+  --color-secondary:  #2e7ae7;
+  --color-accent:     #ceaf78;
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+  --color-surface:    #FFFFFF;
+  --color-muted:      #6B7280;
+
+  /* Typography */
+  --font-heading: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  --font-body:    "Raleway", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-script:  "Allura", "Brush Script MT", cursive;
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+body {
+  font-family: var(--font-body);
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
+
+/* ─── Main Atmosphere ───────────────────────────────────────── */
+#main-content {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-image:
+    radial-gradient(circle at 8% 22%, rgb(46 122 231 / 0.15), transparent 34%),
+    radial-gradient(circle at 86% 12%, rgb(206 175 120 / 0.14), transparent 30%),
+    radial-gradient(circle at 82% 86%, rgb(26 70 173 / 0.12), transparent 38%),
+    radial-gradient(circle at 40% 120%, rgb(46 122 231 / 0.08), transparent 32%);
+  background-repeat: no-repeat;
+  background-size: 160% 160%;
+  animation: mainAtmosphereShift 10s ease-in-out infinite alternate;
+}
+
+#main-content::before,
+#main-content::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border-radius: 9999px;
+  filter: blur(40px);
+  opacity: 0.45;
+  z-index: 0;
+}
+
+#main-content::before {
+  width: 30rem;
+  height: 30rem;
+  top: -12rem;
+  left: -10rem;
+  background: linear-gradient(135deg, rgb(46 122 231 / 0.32), rgb(26 70 173 / 0.1));
+  animation: mainBlobFloat 12s ease-in-out infinite;
+}
+
+#main-content::after {
+  width: 24rem;
+  height: 24rem;
+  right: -7rem;
+  bottom: 8rem;
+  background: linear-gradient(135deg, rgb(206 175 120 / 0.32), rgb(255 255 255 / 0.03));
+  animation: mainBlobFloatReverse 11s ease-in-out infinite;
+}
+
+#main-content > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes mainAtmosphereShift {
+  0% {
+    background-position: 0% 0%, 100% 0%, 100% 100%;
+  }
+  100% {
+    background-position: 18% 8%, 84% 12%, 76% 90%, 38% 98%;
+  }
+}
+
+@keyframes mainBlobFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(3.2rem, 1.6rem, 0) scale(1.08);
+  }
+}
+
+@keyframes mainBlobFloatReverse {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-2.6rem, -1.2rem, 0) scale(1.1);
+  }
+}
+
+/* Entry transitions for brand text on first load */
+.reveal-brand {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateY(14px) scale(0.98);
+  animation: brandReveal 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.reveal-brand-delay {
+  animation-delay: 180ms;
+}
+
+.reveal-tagline {
+  opacity: 0;
+  letter-spacing: 0.02em;
+  transform: translateY(28px) scale(0.94);
+  filter: blur(10px);
+  animation:
+    taglineReveal 1450ms cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards,
+    taglineGlow 6s ease-in-out 1.7s infinite;
+}
+
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(4px);
+  animation: fadeUpReveal 800ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-tagline-spotlight {
+  text-shadow: 0 10px 34px rgb(0 0 0 / 0.28), 0 0 26px rgb(206 175 120 / 0.18);
+}
+
+.hero-typewriter {
+  display: inline-block;
+  min-height: 1.2em;
+  letter-spacing: 0.02em;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.hero-typewriter.is-typing {
+  position: relative;
+  display: inline;
+  border-right: 0.12em solid rgb(206 175 120 / 0.98);
+  animation: blink-caret 760ms step-end infinite;
+}
+
+.reveal-step-1 {
+  animation-delay: 90ms;
+}
+
+.reveal-step-2 {
+  animation-delay: 210ms;
+}
+
+.reveal-step-3 {
+  animation-delay: 360ms;
+}
+
+.reveal-step-4 {
+  animation-delay: 520ms;
+}
+
+@keyframes brandReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+    filter: blur(5px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.01);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes taglineReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.94);
+    filter: blur(10px);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-3px) scale(1.02);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes taglineGlow {
+  0%,
+  100% {
+    text-shadow: 0 10px 34px rgb(0 0 0 / 0.28), 0 0 22px rgb(206 175 120 / 0.14);
+  }
+  50% {
+    text-shadow: 0 12px 42px rgb(0 0 0 / 0.32), 0 0 36px rgb(206 175 120 / 0.26);
+  }
+}
+
+@keyframes fadeUpReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgb(206 175 120 / 0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #main-content,
+  #main-content::before,
+  #main-content::after {
+    animation: none;
+  }
+}
+
+/* ─── Page Transitions ─────────────────────────────────────── */
+::view-transition-old(page-content),
+::view-transition-new(page-content) {
+  animation-duration: 480ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+::view-transition-old(page-content) {
+  animation-name: pageFadeOut;
+}
+
+::view-transition-new(page-content) {
+  animation-name: pageFadeIn;
+}
+
+@keyframes pageFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.996);
+    filter: blur(2px);
+  }
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.997);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) {
+    animation-duration: 1ms;
+    animation-name: none;
+  }
+}

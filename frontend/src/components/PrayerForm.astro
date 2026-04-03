@@ -1,0 +1,100 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const f = t.prayer.form;
+---
+
+<form
+  name="prayer-request"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class="space-y-6"
+  novalidate
+>
+  <!-- Netlify hidden fields -->
+  <input type="hidden" name="form-name" value="prayer-request" />
+  <p class="hidden" aria-hidden="true">
+    <label>Don't fill this out: <input name="bot-field" /></label>
+  </p>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <!-- Name -->
+    <div>
+      <label for="prayer-name" class="block text-sm font-medium text-foreground mb-1.5">
+        {f.name} <span class="text-red-500" aria-label="requerido">*</span>
+      </label>
+      <input
+        type="text"
+        id="prayer-name"
+        name="name"
+        required
+        autocomplete="name"
+        placeholder={f.name_placeholder}
+        class="w-full px-4 py-3 rounded-md border border-gray-200 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition"
+      />
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label for="prayer-email" class="block text-sm font-medium text-foreground mb-1.5">
+        {f.email} <span class="text-red-500" aria-label="requerido">*</span>
+      </label>
+      <input
+        type="email"
+        id="prayer-email"
+        name="email"
+        required
+        autocomplete="email"
+        placeholder={f.email_placeholder}
+        class="w-full px-4 py-3 rounded-md border border-gray-200 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition"
+      />
+    </div>
+  </div>
+
+  <!-- Request -->
+  <div>
+    <label for="prayer-request-text" class="block text-sm font-medium text-foreground mb-1.5">
+      {f.request} <span class="text-red-500" aria-label="requerido">*</span>
+    </label>
+    <textarea
+      id="prayer-request-text"
+      name="request"
+      required
+      rows="5"
+      placeholder={f.request_placeholder}
+      class="w-full px-4 py-3 rounded-md border border-gray-200 text-sm text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition resize-y min-h-[120px]"
+    ></textarea>
+  </div>
+
+  <!-- Private checkbox -->
+  <div class="flex items-start gap-3">
+    <input
+      type="checkbox"
+      id="prayer-private"
+      name="private"
+      class="mt-0.5 w-4 h-4 accent-secondary rounded"
+    />
+    <label for="prayer-private" class="text-sm text-foreground/70 cursor-pointer">
+      {f.private}
+    </label>
+  </div>
+
+  <!-- Submit -->
+  <button
+    type="submit"
+    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 text-sm font-semibold bg-secondary text-white rounded-md hover:bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
+  >
+    {f.submit}
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+    </svg>
+  </button>
+</form>

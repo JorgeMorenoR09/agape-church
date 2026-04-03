@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PrayerForm from '../../components/PrayerForm.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'en' as const;
+const t = useTranslations(lang);
+const p = t.prayer;
+const siteURL = import.meta.env.PUBLIC_SITE_URL || 'https://agapechurch.com';
+---
+
+<BaseLayout
+  title={`${p.title} — Ágape Church`}
+  description={p.meta_description}
+  lang={lang}
+  canonicalURL={`${siteURL}/en/prayer`}
+  alternateUrl={`${siteURL}/es/oracion`}
+>
+  <section class="bg-primary py-12 sm:py-20 px-4 text-center" aria-labelledby="prayer-en-heading">
+    <div class="max-w-3xl mx-auto">
+      <h1 id="prayer-en-heading" class="font-heading text-4xl sm:text-5xl font-bold text-white mb-4">{p.title}</h1>
+      <p class="text-white/75 text-base sm:text-lg">{p.subtitle}</p>
+    </div>
+  </section>
+
+  <section class="py-12 sm:py-20 px-4 bg-background" aria-label="Prayer request form">
+    <div class="max-w-2xl mx-auto">
+      <div class="bg-surface rounded-xl p-8 border border-gray-100 shadow-sm mb-8">
+        <div class="flex items-start gap-4">
+          <span class="text-3xl" aria-hidden="true">🙏</span>
+          <div>
+            <h2 class="font-heading text-xl font-bold text-primary mb-2">Every prayer matters</h2>
+            <p class="text-foreground/70 text-sm leading-relaxed">
+              Our prayer team receives every request with love and confidentiality. We pray for you throughout the week as a community.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <PrayerForm lang={lang} />
+    </div>
+  </section>
+</BaseLayout>

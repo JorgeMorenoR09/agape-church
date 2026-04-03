@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../../i18n/utils';
+import { devotionals } from '../../../data/devotionals';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return devotionals.map((d) => ({
+    params: { slug: d.slug },
+    props: { devotional: d },
+  }));
+};
+
+const lang = 'es' as const;
+const t = useTranslations(lang);
+const dt = t.devotionals;
+const { devotional } = Astro.props;
+const siteURL = import.meta.env.PUBLIC_SITE_URL || 'https://agapechurch.com';
+
+const formattedDate = new Date(devotional.date + 'T00:00:00').toLocaleDateString('es-CO', {
+  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+});
+---
+
+<BaseLayout
+  title={`${devotional.title[lang]} — Ágape Church`}
+  description={devotional.excerpt[lang]}
+  lang={lang}
+  canonicalURL={`${siteURL}/es/devocionales/${devotional.slug}`}
+  alternateUrl={`${siteURL}/en/devotionals/${devotional.slug}`}
+>
+  <article class="max-w-3xl mx-auto px-4 py-16">
+    <!-- Back link -->
+    <a
+      href="/es/devocionales"
+      class="inline-flex items-center gap-1.5 text-sm text-secondary hover:text-primary transition-colors mb-8"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      {dt.back}
+    </a>
+
+    <!-- Header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <time datetime={devotional.date} class="text-sm text-muted capitalize">{formattedDate}</time>
+        <span class="text-accent font-semibold text-sm">{devotional.verseRef}</span>
+      </div>
+
+      <h1 class="font-heading text-4xl sm:text-5xl font-bold text-primary leading-tight mb-6">
+        {devotional.title[lang]}
+      </h1>
+
+      <!-- Verse highlight -->
+      <blockquote class="border-l-4 border-accent pl-6 py-2 bg-surface rounded-r-xl">
+        <p class="text-foreground/80 italic leading-relaxed">{devotional.verse[lang]}</p>
+        <footer class="mt-2 text-sm font-semibold text-accent">{devotional.verseRef}</footer>
+      </blockquote>
+    </header>
+
+    <!-- Body -->
+    <div
+      class="prose prose-lg max-w-none text-foreground/80 leading-relaxed
+             prose-headings:font-heading prose-headings:text-primary
+             prose-p:mb-4 prose-h3:text-xl prose-h3:font-bold prose-h3:mt-8"
+      set:html={devotional.body[lang]}
+    />
+
+    <!-- Share / back footer -->
+    <footer class="mt-16 pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <a
+        href="/es/devocionales"
+        class="inline-flex items-center gap-1.5 text-sm text-secondary hover:text-primary transition-colors"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        {dt.back}
+      </a>
+      <a
+        href="/es/oracion"
+        class="inline-flex items-center gap-2 text-sm font-semibold bg-secondary text-white px-5 py-2.5 rounded-md hover:bg-primary transition-colors"
+      >
+        Enviar solicitud de oración
+      </a>
+    </footer>
+  </article>
+</BaseLayout>

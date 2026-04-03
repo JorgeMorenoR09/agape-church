@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import DevotionalCard from '../../../components/DevotionalCard.astro';
+import { useTranslations } from '../../../i18n/utils';
+import { devotionals } from '../../../data/devotionals';
+
+const lang = 'es' as const;
+const t = useTranslations(lang);
+const d = t.devotionals;
+const siteURL = import.meta.env.PUBLIC_SITE_URL || 'https://agapechurch.com';
+---
+
+<BaseLayout
+  title={`${d.title} — Ágape Church`}
+  description={d.meta_description}
+  lang={lang}
+  canonicalURL={`${siteURL}/es/devocionales`}
+  alternateUrl={`${siteURL}/en/devotionals`}
+>
+  <!-- Page header -->
+  <section class="bg-primary py-20 px-4 text-center" aria-labelledby="devotionals-heading">
+    <div class="max-w-3xl mx-auto">
+      <h1 id="devotionals-heading" class="font-heading text-5xl font-bold text-white mb-4">{d.title}</h1>
+      <p class="text-white/75 text-lg">{d.subtitle}</p>
+    </div>
+  </section>
+
+  <!-- Devotionals list -->
+  <section class="py-20 px-4 bg-background" aria-label="Lista de devocionales">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {devotionals.map((dev) => (
+          <DevotionalCard
+            slug={dev.slug}
+            title={dev.title[lang]}
+            excerpt={dev.excerpt[lang]}
+            date={dev.date}
+            verseRef={dev.verseRef}
+            lang={lang}
+            readMoreLabel={d.read_more}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PrayerForm from '../../components/PrayerForm.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'es' as const;
+const t = useTranslations(lang);
+const p = t.prayer;
+const siteURL = import.meta.env.PUBLIC_SITE_URL || 'https://agapechurch.com';
+---
+
+<BaseLayout
+  title={`${p.title} — Ágape Church`}
+  description={p.meta_description}
+  lang={lang}
+  canonicalURL={`${siteURL}/es/oracion`}
+  alternateUrl={`${siteURL}/en/prayer`}
+>
+  <!-- Page header -->
+  <section class="bg-primary py-12 sm:py-20 px-4 text-center" aria-labelledby="prayer-heading">
+    <div class="max-w-3xl mx-auto">
+      <h1 id="prayer-heading" class="font-heading text-4xl sm:text-5xl font-bold text-white mb-4">{p.title}</h1>
+      <p class="text-white/75 text-base sm:text-lg">{p.subtitle}</p>
+    </div>
+  </section>
+
+  <!-- Form section -->
+  <section class="py-12 sm:py-20 px-4 bg-background" aria-label="Formulario de oración">
+    <div class="max-w-2xl mx-auto">
+      <!-- Intro card -->
+      <div class="bg-surface rounded-xl p-8 border border-gray-100 shadow-sm mb-8">
+        <div class="flex items-start gap-4">
+          <span class="text-3xl" aria-hidden="true">🙏</span>
+          <div>
+            <h2 class="font-heading text-xl font-bold text-primary mb-2">
+              Cada oración importa
+            </h2>
+            <p class="text-foreground/70 text-sm leading-relaxed">
+              Nuestro equipo de oración recibe cada solicitud con amor y confidencialidad. Oramos por ti durante la semana como comunidad.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <PrayerForm lang={lang} />
+    </div>
+  </section>
+</BaseLayout>

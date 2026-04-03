@@ -1,0 +1,57 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  date: string;
+  time?: string;
+  location: string;
+  dateLabel: string;
+  timeLabel: string;
+  locationLabel: string;
+}
+
+const { title, description, date, time, location, dateLabel, timeLabel, locationLabel } = Astro.props;
+
+const formattedDate = new Date(date + 'T00:00:00').toLocaleDateString('es-CO', {
+  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+});
+---
+
+<article class="bg-surface rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+  <!-- Date accent strip -->
+  <div class="bg-primary px-6 py-3 flex items-center gap-4">
+    <div class="text-center">
+      <div class="text-accent font-heading text-2xl font-bold leading-none">
+        {new Date(date + 'T00:00:00').getDate()}
+      </div>
+      <div class="text-white/70 text-xs uppercase tracking-wide mt-0.5">
+        {new Date(date + 'T00:00:00').toLocaleDateString('es-CO', { month: 'short' })}
+      </div>
+    </div>
+    <div class="h-10 w-px bg-white/20" aria-hidden="true"></div>
+    <h3 class="font-heading text-white font-semibold text-base leading-snug">
+      {title}
+    </h3>
+  </div>
+
+  <div class="p-6">
+    <p class="text-foreground/70 text-sm leading-relaxed mb-5">{description}</p>
+
+    <dl class="space-y-2">
+      <div class="flex items-start gap-2">
+        <dt class="text-xs font-semibold text-muted uppercase tracking-wide w-16 shrink-0">{dateLabel}</dt>
+        <dd class="text-sm text-foreground capitalize">{formattedDate}</dd>
+      </div>
+      {time && (
+        <div class="flex items-start gap-2">
+          <dt class="text-xs font-semibold text-muted uppercase tracking-wide w-16 shrink-0">{timeLabel}</dt>
+          <dd class="text-sm text-foreground">{time}</dd>
+        </div>
+      )}
+      <div class="flex items-start gap-2">
+        <dt class="text-xs font-semibold text-muted uppercase tracking-wide w-16 shrink-0">{locationLabel}</dt>
+        <dd class="text-sm text-foreground">{location}</dd>
+      </div>
+    </dl>
+  </div>
+</article>

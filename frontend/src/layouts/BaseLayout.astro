@@ -1,0 +1,154 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: 'es' | 'en';
+  canonicalURL?: string;
+  ogImage?: string;
+  alternateUrl?: string;
+}
+
+const {
+  title,
+  description,
+  lang = 'es',
+  canonicalURL = Astro.url.href,
+  ogImage = '/og-default.jpg',
+  alternateUrl,
+} = Astro.props;
+
+const siteURL = import.meta.env.PUBLIC_SITE_URL || 'https://agapechurch.com';
+const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteURL}${ogImage}`;
+const otherLang = lang === 'es' ? 'en' : 'es';
+const alternateHref = alternateUrl ?? `${siteURL}/${otherLang}/`;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Primary -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Alternate language -->
+    <link rel="alternate" hreflang={lang} href={canonicalURL} />
+    <link rel="alternate" hreflang={otherLang} href={alternateHref} />
+    <link rel="alternate" hreflang="x-default" href={`${siteURL}/es/`} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:site_name" content="Ágape Church" />
+    <meta property="og:locale" content={lang === 'es' ? 'es_CO' : 'en_US'} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/white-favico.ico?v=2" />
+    <link rel="shortcut icon" href="/white-favico.ico?v=2" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <ClientRouter />
+    <script is:inline>
+      const TYPEWRITER_TIMER_KEY = '__agapeTypewriterTimer';
+      const TYPEWRITER_TEXT_KEY = '__agapeTypewriterText';
+
+      const runTypewriter = () => {
+        const nodes = document.querySelectorAll('[data-typewriter]');
+        const isHomePage = window.location.pathname === '/' || window.location.pathname === '/es/' || window.location.pathname === '/en/';
+        
+        if (!isHomePage) {
+          nodes.forEach((node) => {
+            if (node instanceof HTMLElement) {
+              node.classList.remove('is-typing');
+              node.textContent = node.dataset.typewriterText || node.textContent || '';
+            }
+          });
+          return;
+        }
+
+        nodes.forEach((node) => {
+          if (!(node instanceof HTMLElement)) return;
+
+          const originalText = node.dataset.typewriterText ?? node.textContent ?? '';
+          node.dataset.typewriterText = originalText;
+
+          const prevTimer = node[TYPEWRITER_TIMER_KEY];
+          if (typeof prevTimer === 'number') {
+            window.clearTimeout(prevTimer);
+          }
+
+          node.textContent = '';
+          node.classList.add('is-typing');
+
+          const chars = Array.from(originalText);
+          let index = 0;
+
+          const tick = () => {
+            if (index >= chars.length) {
+              node.classList.remove('is-typing');
+              node[TYPEWRITER_TIMER_KEY] = null;
+              return;
+            }
+
+            node.textContent += chars[index];
+            index += 1;
+            node[TYPEWRITER_TIMER_KEY] = window.setTimeout(tick, 62);
+          };
+
+          node[TYPEWRITER_TIMER_KEY] = window.setTimeout(tick, 460);
+          node[TYPEWRITER_TEXT_KEY] = originalText;
+        });
+      };
+
+      const triggerMotion = () => {
+        const root = document.documentElement;
+        root.classList.remove('motion-ready');
+        requestAnimationFrame(() => root.classList.add('motion-ready'));
+        requestAnimationFrame(runTypewriter);
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', triggerMotion, { once: true });
+      } else {
+        triggerMotion();
+      }
+
+      document.addEventListener('astro:after-swap', triggerMotion);
+      window.addEventListener('pageshow', triggerMotion);
+    </script>
+  </head>
+
+  <body class="bg-background text-foreground font-body antialiased">
+    <Navbar lang={lang} />
+    <main id="main-content" transition:name="page-content">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

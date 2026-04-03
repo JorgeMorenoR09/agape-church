@@ -1,0 +1,77 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const d = t.donations;
+---
+
+<section class="bg-primary py-12 sm:py-20 px-4" aria-labelledby="donations-heading">
+  <div class="max-w-4xl mx-auto text-center">
+
+    <!-- Eyebrow -->
+    <div class="inline-flex items-center gap-2 mb-4" aria-hidden="true">
+      <span class="h-px w-8 bg-white/50"></span>
+      <span class="text-white/80 text-xs sm:text-sm font-semibold uppercase tracking-[0.2em]">
+        {lang === 'es' ? 'Da con amor' : 'Give with love'}
+      </span>
+      <span class="h-px w-8 bg-white/50"></span>
+    </div>
+
+    <h2 id="donations-heading" class="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+      {d.title}
+    </h2>
+    <p class="font-script text-white/90 text-xl sm:text-2xl md:text-3xl font-normal mb-6">{d.subtitle}</p>
+    <p class="text-white/75 text-base sm:text-lg leading-relaxed md:leading-loose max-w-2xl mx-auto mb-10">
+      {d.body}
+    </p>
+
+    <!-- Impact list -->
+    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 mb-10 text-left max-w-lg mx-auto">
+      <h3 class="text-white font-semibold mb-4 text-sm sm:text-base">{d.impact_title}</h3>
+      <ul class="space-y-2" role="list">
+        {d.impacts.map((item) => (
+          <li class="flex items-center gap-3 text-white/80 text-xs sm:text-sm">
+            <svg class="w-4 h-4 text-secondary shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- CTA Buttons -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="https://www.pse.com.co"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold bg-secondary text-white rounded-md hover:bg-primary transition-all hover:scale-105 shadow-lg"
+      >
+        {d.cta_pse}
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </a>
+      <a
+        href="https://wompi.co"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold border-2 border-white/60 text-white rounded-md hover:border-white hover:bg-white/10 transition-all"
+      >
+        {d.cta_wompi}
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </a>
+    </div>
+
+    <p class="mt-4 text-white/40 text-xs">{d.note}</p>
+  </div>
+</section>
