@@ -1,20 +1,19 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PrayerForm from '../../components/PrayerForm.astro';
-import { useTranslations } from '../../i18n/utils';
+import { absoluteUrl, useTranslations } from '../../i18n/utils';
 
 const lang = 'en' as const;
 const t = useTranslations(lang);
 const p = t.prayer;
-const siteURL = import.meta.env.PUBLIC_SITE_URL || 'https://agapechurch.com';
 ---
 
 <BaseLayout
   title={`${p.title} — Ágape Church`}
   description={p.meta_description}
   lang={lang}
-  canonicalURL={`${siteURL}/en/prayer`}
-  alternateUrl={`${siteURL}/es/oracion`}
+  canonicalURL={absoluteUrl('/en/prayer')}
+  alternateUrl={absoluteUrl('/es/oracion')}
 >
   <section class="bg-primary py-12 sm:py-20 px-4 text-center" aria-labelledby="prayer-en-heading">
     <div class="max-w-3xl mx-auto">

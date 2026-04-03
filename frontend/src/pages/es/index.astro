@@ -4,13 +4,12 @@ import Hero from '../../components/Hero.astro';
 import DevotionalCard from '../../components/DevotionalCard.astro';
 import MinistryCard from '../../components/MinistryCard.astro';
 import DonationSection from '../../components/DonationSection.astro';
-import { useTranslations } from '../../i18n/utils';
+import { absoluteUrl, localizedPath, useTranslations } from '../../i18n/utils';
 import { devotionals } from '../../data/devotionals';
 import { ministries } from '../../data/ministries';
 
 const lang = 'es' as const;
 const t = useTranslations(lang);
-const siteURL = import.meta.env.PUBLIC_SITE_URL || 'https://agapechurch.com';
 
 const recentDevotionals = devotionals.slice(0, 3);
 const featuredMinistries = ministries.slice(0, 4);
@@ -20,15 +19,15 @@ const featuredMinistries = ministries.slice(0, 4);
   title="Ágape Church — El amor hace la diferencia"
   description="Ágape Church es una comunidad de fe en Bogotá que cree en el poder transformador del amor de Cristo. Únete a nosotros cada domingo."
   lang={lang}
-  canonicalURL={`${siteURL}/es/`}
-  alternateUrl={`${siteURL}/en/`}
+  canonicalURL={absoluteUrl('/es/')}
+  alternateUrl={absoluteUrl('/en/')}
 >
   <!-- Hero -->
   <Hero
     tagline={t.hero.tagline}
     subtitle={t.hero.subtitle}
-    ctaPrimary={{ text: t.hero.cta_primary, href: '/es/nosotros' }}
-    ctaSecondary={{ text: t.hero.cta_secondary, href: '/es/ministerios' }}
+    ctaPrimary={{ text: t.hero.cta_primary, href: localizedPath(lang, 'nosotros') }}
+    ctaSecondary={{ text: t.hero.cta_secondary, href: localizedPath(lang, 'ministerios') }}
   />
 
   <!-- Devocionales recientes -->
@@ -57,7 +56,7 @@ const featuredMinistries = ministries.slice(0, 4);
 
       <div class="text-center">
         <a
-          href="/es/devocionales"
+          href={localizedPath(lang, 'devocionales')}
           class="inline-flex items-center gap-2 text-sm font-medium text-secondary hover:text-primary border border-secondary hover:border-primary rounded-md px-6 py-2.5 transition-colors"
         >
           {t.home.devotionals_cta}
@@ -85,14 +84,14 @@ const featuredMinistries = ministries.slice(0, 4);
             icon={m.icon}
             name={m.name[lang]}
             description={m.description[lang]}
-            href={`/es/ministerios#${m.slug}`}
+            href={localizedPath(lang, `ministerios#${m.slug}`)}
           />
         ))}
       </div>
 
       <div class="text-center">
         <a
-          href="/es/ministerios"
+          href={localizedPath(lang, 'ministerios')}
           class="inline-flex items-center gap-2 text-sm font-medium text-secondary hover:text-primary border border-secondary hover:border-primary rounded-md px-6 py-2.5 transition-colors"
         >
           {t.home.ministries_cta}

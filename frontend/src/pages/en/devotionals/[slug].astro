@@ -1,8 +1,13 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { useTranslations } from '../../../i18n/utils';
+import { absoluteUrl, localizedPath, useTranslations } from '../../../i18n/utils';
 import { devotionals } from '../../../data/devotionals';
+import type { Devotional } from '../../../data/types';
 import type { GetStaticPaths } from 'astro';
+
+interface Props {
+  devotional: Devotional;
+}
 
 export const getStaticPaths: GetStaticPaths = () => {
   return devotionals.map((d) => ({
@@ -15,7 +20,6 @@ const lang = 'en' as const;
 const t = useTranslations(lang);
 const dt = t.devotionals;
 const { devotional } = Astro.props;
-const siteURL = import.meta.env.PUBLIC_SITE_URL || 'https://agapechurch.com';
 
 const formattedDate = new Date(devotional.date + 'T00:00:00').toLocaleDateString('en-US', {
   weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
@@ -26,12 +30,12 @@ const formattedDate = new Date(devotional.date + 'T00:00:00').toLocaleDateString
   title={`${devotional.title[lang]} — Ágape Church`}
   description={devotional.excerpt[lang]}
   lang={lang}
-  canonicalURL={`${siteURL}/en/devotionals/${devotional.slug}`}
-  alternateUrl={`${siteURL}/es/devocionales/${devotional.slug}`}
+  canonicalURL={absoluteUrl(`/en/devotionals/${devotional.slug}`)}
+  alternateUrl={absoluteUrl(`/es/devocionales/${devotional.slug}`)}
 >
   <article class="max-w-3xl mx-auto px-4 py-16">
     <a
-      href="/en/devotionals"
+      href={localizedPath(lang, 'devotionals')}
       class="inline-flex items-center gap-1.5 text-sm text-secondary hover:text-primary transition-colors mb-8"
     >
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -65,7 +69,7 @@ const formattedDate = new Date(devotional.date + 'T00:00:00').toLocaleDateString
 
     <footer class="mt-16 pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
       <a
-        href="/en/devotionals"
+        href={localizedPath(lang, 'devotionals')}
         class="inline-flex items-center gap-1.5 text-sm text-secondary hover:text-primary transition-colors"
       >
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -74,7 +78,7 @@ const formattedDate = new Date(devotional.date + 'T00:00:00').toLocaleDateString
         {dt.back}
       </a>
       <a
-        href="/en/prayer"
+        href={localizedPath(lang, 'prayer')}
         class="inline-flex items-center gap-2 text-sm font-semibold bg-secondary text-white px-5 py-2.5 rounded-md hover:bg-primary transition-colors"
       >
         Send a prayer request
