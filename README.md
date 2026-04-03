@@ -23,7 +23,7 @@ Los materiales y recursos presentes o referenciados en este sitio están sujetos
 
 | Nombre | Rol |
 |---|---|
-| <!-- Jorge Moreno --> | <!-- Desarrollador / Diseñador --> |
+| Jorge Moreno | Desarrollador / Diseñador |
 
 ---
 
