@@ -1,4 +1,6 @@
 ---
+import { localizedPath } from '../i18n/utils';
+
 interface Props {
   slug: string;
   title: string;
@@ -34,7 +36,7 @@ const basePath = lang === 'es' ? 'devocionales' : 'devotionals';
 
     <!-- Read more -->
     <a
-      href={`/${lang}/${basePath}/${slug}`}
+      href={localizedPath(lang, `${basePath}/${slug}`)}
       class="inline-flex items-center gap-1.5 text-sm font-medium text-secondary hover:text-primary transition-colors mt-auto"
       aria-label={`${readMoreLabel}: ${title}`}
     >
