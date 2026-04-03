@@ -4,9 +4,12 @@ interface Props {
   name: string;
   description: string;
   href: string;
+  lang: 'es' | 'en';
 }
 
-const { icon, name, description, href } = Astro.props;
+const { icon, name, description, href, lang } = Astro.props;
+const learnMoreLabel = lang === 'es' ? 'Ver ministerio' : 'Learn more';
+const ariaLabel = lang === 'es' ? `Conocer más sobre ${name}` : `Learn more about ${name}`;
 ---
 
 <article class="group bg-surface rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:border-secondary/30 transition-all duration-300">
@@ -18,9 +21,9 @@ const { icon, name, description, href } = Astro.props;
   <a
     href={href}
     class="inline-flex items-center gap-1.5 text-sm font-medium text-secondary hover:text-primary transition-colors"
-    aria-label={`Conocer más sobre ${name}`}
+    aria-label={ariaLabel}
   >
-    {name.split(' ')[0] === 'Ministerio' || name.split(' ')[0] === 'Misiones' ? 'Ver ministerio' : 'Learn more'}
+    {learnMoreLabel}
     <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
     </svg>

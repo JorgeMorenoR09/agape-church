@@ -9,7 +9,7 @@ const es = {
     donations: 'Donaciones',
   },
   hero: {
-    tagline: 'Estas en un lugar donde el amor hace la diferencia',
+    tagline: 'Estás en un lugar donde el amor hace la diferencia',
     subtitle: 'Somos una comunidad de fe que cree en el poder transformador del amor de Cristo. Un lugar donde todos pertenecen.',
     cta_primary: 'Únete a nosotros',
     cta_secondary: 'Conoce más',
@@ -94,7 +94,7 @@ const es = {
     note: 'Serás redirigido a una plataforma de pago segura.',
   },
   footer: {
-    tagline: 'Estas en un lugar donde el amor hace la diferencia',
+    tagline: 'Estás en un lugar donde el amor hace la diferencia',
     address: 'Carrera 45 #68-30, Bogotá, Colombia',
     phone: '+57 (601) 555-0100',
     email: 'contacto@agapechurch.com',

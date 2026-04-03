@@ -8,11 +8,13 @@ interface Props {
   dateLabel: string;
   timeLabel: string;
   locationLabel: string;
+  lang: 'es' | 'en';
 }
 
-const { title, description, date, time, location, dateLabel, timeLabel, locationLabel } = Astro.props;
+const { title, description, date, time, location, dateLabel, timeLabel, locationLabel, lang } = Astro.props;
 
-const formattedDate = new Date(date + 'T00:00:00').toLocaleDateString('es-CO', {
+const locale = lang === 'es' ? 'es-CO' : 'en-US';
+const formattedDate = new Date(date + 'T00:00:00').toLocaleDateString(locale, {
   weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
 });
 ---
@@ -25,7 +27,7 @@ const formattedDate = new Date(date + 'T00:00:00').toLocaleDateString('es-CO', {
         {new Date(date + 'T00:00:00').getDate()}
       </div>
       <div class="text-white/70 text-xs uppercase tracking-wide mt-0.5">
-        {new Date(date + 'T00:00:00').toLocaleDateString('es-CO', { month: 'short' })}
+        {new Date(date + 'T00:00:00').toLocaleDateString(locale, { month: 'short' })}
       </div>
     </div>
     <div class="h-10 w-px bg-white/20" aria-hidden="true"></div>

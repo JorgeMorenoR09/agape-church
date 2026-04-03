@@ -85,6 +85,7 @@ const featuredMinistries = ministries.slice(0, 4);
             name={m.name[lang]}
             description={m.description[lang]}
             href={localizedPath(lang, `ministries#${m.slug}`)}
+            lang={lang}
           />
         ))}
       </div>
