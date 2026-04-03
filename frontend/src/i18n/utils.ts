@@ -20,10 +20,11 @@ export function alternateLang(lang: Lang): Lang {
 }
 
 /**
- * Maps a route slug from the current language to the target language.
- * Key = slug in the current language, value = equivalent slug in the target language.
- * routeMap.en  — given a Spanish slug, returns the English equivalent.
- * routeMap.es  — given an English slug, returns the Spanish equivalent.
+ * Bidirectional slug map between language versions.
+ * routeMap.en  — key = Spanish slug, value = English slug (use when switching ES→EN)
+ * routeMap.es  — key = English slug, value = Spanish slug (use when switching EN→ES)
+ *
+ * Usage: routeMap[targetLang][currentSlug] → targetSlug
  */
 export const routeMap: Record<Lang, Record<string, string>> = {
   es: {
