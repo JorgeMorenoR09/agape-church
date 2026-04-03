@@ -1,5 +1,5 @@
 ---
-import { useTranslations, alternateLang } from '../i18n/utils';
+import { useTranslations, alternateLang, localizedPath, publicAsset } from '../i18n/utils';
 import type { Lang } from '../i18n/utils';
 
 interface Props {
@@ -11,13 +11,13 @@ const t = useTranslations(lang);
 const other = alternateLang(lang);
 
 const navLinks = [
-  { href: `/${lang}/`, label: t.nav.home },
-  { href: `/${lang}/${lang === 'es' ? 'nosotros' : 'about'}`, label: t.nav.about },
-  { href: `/${lang}/${lang === 'es' ? 'ministerios' : 'ministries'}`, label: t.nav.ministries },
-  { href: `/${lang}/${lang === 'es' ? 'devocionales' : 'devotionals'}`, label: t.nav.devotionals },
-  { href: `/${lang}/${lang === 'es' ? 'eventos' : 'events'}`, label: t.nav.events },
-  { href: `/${lang}/${lang === 'es' ? 'oracion' : 'prayer'}`, label: t.nav.prayer },
-  { href: `/${lang}/${lang === 'es' ? 'donaciones' : 'donations'}`, label: t.nav.donations },
+  { href: localizedPath(lang), label: t.nav.home },
+  { href: localizedPath(lang, lang === 'es' ? 'nosotros' : 'about'), label: t.nav.about },
+  { href: localizedPath(lang, lang === 'es' ? 'ministerios' : 'ministries'), label: t.nav.ministries },
+  { href: localizedPath(lang, lang === 'es' ? 'devocionales' : 'devotionals'), label: t.nav.devotionals },
+  { href: localizedPath(lang, lang === 'es' ? 'eventos' : 'events'), label: t.nav.events },
+  { href: localizedPath(lang, lang === 'es' ? 'oracion' : 'prayer'), label: t.nav.prayer },
+  { href: localizedPath(lang, lang === 'es' ? 'donaciones' : 'donations'), label: t.nav.donations },
 ];
 ---
 
@@ -28,12 +28,12 @@ const navLinks = [
   >
     <!-- Logo -->
     <a
-      href={`/${lang}/`}
+      href={localizedPath(lang)}
       class="flex items-center max-w-[52vw] sm:max-w-[260px] lg:max-w-[300px] hover:opacity-80 transition-opacity"
       aria-label="Ágape Church — Inicio"
     >
       <img
-        src="/images/blue-logo.png"
+        src={publicAsset('/images/blue-logo.png')}
         alt="Ágape Church"
         class="h-16 sm:h-20 lg:h-24 w-auto max-w-full object-contain"
       />
@@ -57,7 +57,7 @@ const navLinks = [
     <div class="flex items-center gap-2">
       <!-- Donate CTA (desktop) -->
       <a
-        href={`/${lang}/${lang === 'es' ? 'donaciones' : 'donations'}`}
+        href={localizedPath(lang, lang === 'es' ? 'donaciones' : 'donations')}
         class="hidden lg:inline-flex items-center px-4 py-2 text-sm font-semibold bg-secondary text-white rounded-md hover:bg-primary transition-colors"
       >
         {t.nav.donations}
@@ -65,7 +65,7 @@ const navLinks = [
 
       <!-- Language switcher -->
       <a
-        href={`/${other}/`}
+        href={localizedPath(other)}
         class="px-3 py-1.5 text-xs font-semibold border border-secondary text-secondary rounded-md hover:bg-secondary hover:text-white transition-colors uppercase tracking-wide"
         aria-label={`Switch to ${other === 'en' ? 'English' : 'Español'}`}
       >

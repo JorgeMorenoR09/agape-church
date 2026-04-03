@@ -1,21 +1,20 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import EventCard from '../../components/EventCard.astro';
-import { useTranslations } from '../../i18n/utils';
+import { absoluteUrl, useTranslations } from '../../i18n/utils';
 import { events } from '../../data/events';
 
 const lang = 'en' as const;
 const t = useTranslations(lang);
 const e = t.events;
-const siteURL = import.meta.env.PUBLIC_SITE_URL || 'https://agapechurch.com';
 ---
 
 <BaseLayout
   title={`${e.title} — Ágape Church`}
   description={e.meta_description}
   lang={lang}
-  canonicalURL={`${siteURL}/en/events`}
-  alternateUrl={`${siteURL}/es/eventos`}
+  canonicalURL={absoluteUrl('/en/events')}
+  alternateUrl={absoluteUrl('/es/eventos')}
 >
   <section class="bg-primary py-20 px-4 text-center" aria-labelledby="events-en-heading">
     <div class="max-w-3xl mx-auto">

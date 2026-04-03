@@ -1,20 +1,19 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import DonationSection from '../../components/DonationSection.astro';
-import { useTranslations } from '../../i18n/utils';
+import { absoluteUrl, useTranslations } from '../../i18n/utils';
 
 const lang = 'es' as const;
 const t = useTranslations(lang);
 const d = t.donations;
-const siteURL = import.meta.env.PUBLIC_SITE_URL || 'https://agapechurch.com';
 ---
 
 <BaseLayout
   title={`${d.title} — Ágape Church`}
   description={d.meta_description}
   lang={lang}
-  canonicalURL={`${siteURL}/es/donaciones`}
-  alternateUrl={`${siteURL}/en/donations`}
+  canonicalURL={absoluteUrl('/es/donaciones')}
+  alternateUrl={absoluteUrl('/en/donations')}
 >
   <!-- Page header -->
   <section class="bg-primary py-20 px-4 text-center" aria-labelledby="donations-page-heading">
