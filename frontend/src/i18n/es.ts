@@ -24,9 +24,9 @@ const es = {
   },
   about: {
     title: 'Quiénes somos',
-    meta_description: 'Conoce la historia, visión y valores de Ágape Church — una comunidad de fe en Bogotá.',
+    meta_description: 'Conoce la historia, visión y valores de Agape Church — una comunidad de fe en Bogotá.',
     history_title: 'Nuestra historia',
-    history_body: 'Ágape Church nació en 2010 con un pequeño grupo de familias que soñaban con una iglesia donde el amor fuera la cultura, no apenas el mensaje. Desde entonces hemos crecido como comunidad, pero nuestra esencia permanece: el amor hace la diferencia.',
+    history_body: 'Agape Church nació en 2010 con un pequeño grupo de familias que soñaban con una iglesia donde el amor fuera la cultura, no apenas el mensaje. Desde entonces hemos crecido como comunidad, pero nuestra esencia permanece: el amor hace la diferencia.',
     vision_title: 'Visión',
     vision_body: 'Ser una iglesia que transforma vidas y comunidades a través del amor incondicional de Cristo.',
     mission_title: 'Misión',
@@ -43,12 +43,12 @@ const es = {
   ministries: {
     title: 'Nuestros ministerios',
     subtitle: 'Cada ministerio es un espacio donde el amor toma forma.',
-    meta_description: 'Descubre los ministerios de Ágape Church y encuentra tu lugar para servir y crecer.',
+    meta_description: 'Descubre los ministerios de Agape Church y encuentra tu lugar para servir y crecer.',
   },
   devotionals: {
     title: 'Devocionales',
     subtitle: 'Reflexiones semanales para nutrir tu vida espiritual.',
-    meta_description: 'Devocionales semanales de Ágape Church basados en la Biblia.',
+    meta_description: 'Devocionales semanales de Agape Church basados en la Biblia.',
     read_more: 'Leer devocional',
     verse_label: 'Versículo de hoy',
     back: '← Volver a devocionales',
@@ -56,7 +56,7 @@ const es = {
   events: {
     title: 'Eventos',
     subtitle: 'Espacios para encontrarnos, crecer y celebrar juntos.',
-    meta_description: 'Próximos eventos de Ágape Church en Bogotá.',
+    meta_description: 'Próximos eventos de Agape Church en Bogotá.',
     date_label: 'Fecha',
     time_label: 'Hora',
     location_label: 'Lugar',
@@ -64,7 +64,7 @@ const es = {
   prayer: {
     title: 'Solicitud de oración',
     subtitle: 'Cuéntanos tu necesidad. Somos una comunidad que ora juntos.',
-    meta_description: 'Envía tu solicitud de oración a Ágape Church. Estamos aquí para orar contigo.',
+    meta_description: 'Envía tu solicitud de oración a Agape Church. Estamos aquí para orar contigo.',
     form: {
       name: 'Nombre',
       name_placeholder: 'Tu nombre',
@@ -80,7 +80,7 @@ const es = {
   donations: {
     title: 'Donaciones',
     subtitle: '"El amor hace la diferencia" — también con tus recursos.',
-    meta_description: 'Apoya la misión de Ágape Church con tu donación. Tu generosidad transforma vidas.',
+    meta_description: 'Apoya la misión de Agape Church con tu donación. Tu generosidad transforma vidas.',
     body: 'Tu generosidad hace posible que más personas experimenten el amor de Cristo. Cada aporte, grande o pequeño, tiene un impacto real en nuestra comunidad y más allá de ella.',
     impact_title: '¿En qué impacta tu donación?',
     impacts: [

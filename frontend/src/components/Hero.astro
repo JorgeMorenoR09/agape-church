@@ -10,7 +10,7 @@ const { tagline, subtitle, ctaPrimary, ctaSecondary } = Astro.props;
 ---
 
 <section
-  class="relative min-h-screen flex items-center justify-center overflow-hidden"
+  class="relative flex items-center justify-center overflow-hidden min-h-[calc(100svh-5rem)]"
   aria-label="Hero"
 >
   <!-- Background gradient -->
@@ -34,7 +34,7 @@ const { tagline, subtitle, ctaPrimary, ctaSecondary } = Astro.props;
   <div class="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto">
     <!-- Brand text -->
     <div class="mb-8" aria-hidden="true">
-      <span class="reveal-brand reveal-step-1 font-heading text-white text-6xl sm:text-7xl lg:text-8xl font-semibold tracking-[0.02em] drop-shadow-[0_6px_16px_rgba(0,0,0,0.58)]">Ágape Church</span>
+      <span class="reveal-brand reveal-step-1 font-heading text-white text-6xl sm:text-7xl lg:text-8xl font-semibold tracking-[0.02em] drop-shadow-[0_6px_16px_rgba(0,0,0,0.58)]">Agape Church</span>
     </div>
 
     <!-- Main headline -->
@@ -65,9 +65,9 @@ const { tagline, subtitle, ctaPrimary, ctaSecondary } = Astro.props;
   </div>
 
   <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40" aria-hidden="true">
-    <span class="text-xs tracking-widest uppercase">Scroll</span>
-    <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <div class="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-2 rounded-full border border-white/20 bg-black/12 px-4 py-3 text-white/85 shadow-[0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-sm sm:bottom-8" aria-hidden="true">
+    <span class="text-[0.65rem] font-semibold tracking-[0.38em] uppercase">SCROLL</span>
+    <svg class="h-4 w-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
     </svg>
   </div>

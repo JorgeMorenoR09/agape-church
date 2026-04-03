@@ -24,9 +24,9 @@ const en = {
   },
   about: {
     title: 'Who We Are',
-    meta_description: 'Learn about the history, vision, and values of Ágape Church — a faith community in Bogotá.',
+    meta_description: 'Learn about the history, vision, and values of Agape Church — a faith community in Bogotá.',
     history_title: 'Our Story',
-    history_body: 'Ágape Church was born in 2010 with a small group of families who dreamed of a church where love was the culture, not just the message. Since then we have grown as a community, but our essence remains: love makes the difference.',
+    history_body: 'Agape Church was born in 2010 with a small group of families who dreamed of a church where love was the culture, not just the message. Since then we have grown as a community, but our essence remains: love makes the difference.',
     vision_title: 'Vision',
     vision_body: 'To be a church that transforms lives and communities through the unconditional love of Christ.',
     mission_title: 'Mission',
@@ -43,12 +43,12 @@ const en = {
   ministries: {
     title: 'Our Ministries',
     subtitle: 'Each ministry is a space where love takes shape.',
-    meta_description: 'Discover the ministries of Ágape Church and find your place to serve and grow.',
+    meta_description: 'Discover the ministries of Agape Church and find your place to serve and grow.',
   },
   devotionals: {
     title: 'Devotionals',
     subtitle: 'Weekly reflections to nourish your spiritual life.',
-    meta_description: 'Weekly Bible-based devotionals from Ágape Church.',
+    meta_description: 'Weekly Bible-based devotionals from Agape Church.',
     read_more: 'Read devotional',
     verse_label: "Today's verse",
     back: '← Back to devotionals',
@@ -56,7 +56,7 @@ const en = {
   events: {
     title: 'Events',
     subtitle: 'Spaces to meet, grow, and celebrate together.',
-    meta_description: 'Upcoming Ágape Church events in Bogotá.',
+    meta_description: 'Upcoming Agape Church events in Bogotá.',
     date_label: 'Date',
     time_label: 'Time',
     location_label: 'Location',
@@ -64,7 +64,7 @@ const en = {
   prayer: {
     title: 'Prayer Request',
     subtitle: 'Share your need. We are a community that prays together.',
-    meta_description: 'Submit your prayer request to Ágape Church. We\'re here to pray with you.',
+    meta_description: 'Submit your prayer request to Agape Church. We\'re here to pray with you.',
     form: {
       name: 'Name',
       name_placeholder: 'Your name',
@@ -80,7 +80,7 @@ const en = {
   donations: {
     title: 'Donations',
     subtitle: '"Love Makes the Difference" — including with your resources.',
-    meta_description: 'Support the mission of Ágape Church with your donation. Your generosity transforms lives.',
+    meta_description: 'Support the mission of Agape Church with your donation. Your generosity transforms lives.',
     body: 'Your generosity makes it possible for more people to experience the love of Christ. Every contribution, large or small, has a real impact on our community and beyond.',
     impact_title: 'What does your donation impact?',
     impacts: [
