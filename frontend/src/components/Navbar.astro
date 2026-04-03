@@ -1,5 +1,5 @@
 ---
-import { useTranslations, alternateLang } from '../i18n/utils';
+import { useTranslations, alternateLang, getAlternateUrl } from '../i18n/utils';
 import type { Lang } from '../i18n/utils';
 
 interface Props {
@@ -9,6 +9,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const other = alternateLang(lang);
+const alternateUrl = getAlternateUrl(lang, Astro.url.pathname);
 
 const navLinks = [
   { href: `/${lang}/`, label: t.nav.home },
@@ -65,7 +66,7 @@ const navLinks = [
 
       <!-- Language switcher -->
       <a
-        href={`/${other}/`}
+        href={alternateUrl}
         class="px-3 py-1.5 text-xs font-semibold border border-secondary text-secondary rounded-md hover:bg-secondary hover:text-white transition-colors uppercase tracking-wide"
         aria-label={`Switch to ${other === 'en' ? 'English' : 'Español'}`}
       >
