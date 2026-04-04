@@ -9,7 +9,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:parity": "tsx scripts/check-i18n-parity.ts",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test": "npm run test:parity && npm run test:e2e"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
@@ -18,5 +22,9 @@
     "astro": "^6.0.8",
     "tailwindcss": "^4.2.2",
     "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "tsx": "^4.21.0"
   }
 }

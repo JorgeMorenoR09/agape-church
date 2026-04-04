@@ -16,6 +16,22 @@ SEO optimization is mandatory.
 
 ---
 
+# Bilingual Parity Rule (ES ↔ EN)
+
+**Every change made to the Spanish version of the site MUST also be applied to the English version, and vice versa.**
+
+This rule applies to:
+
+- New or modified pages under `src/pages/es/` → must have a counterpart under `src/pages/en/`
+- New or modified keys in `src/i18n/es.ts` → must be added with their translation in `src/i18n/en.ts`
+- New components that receive translated text → both language files must be updated
+- Structural or layout changes → must be reflected in both language routes
+- New navigation links → must appear in both `es` and `en` navLinks arrays in `Navbar.astro`
+
+This is enforced automatically by `npm run test:parity` (script: `scripts/check-i18n-parity.ts`) and by the GitHub Actions pipeline, which will block deployment if ES and EN are out of sync.
+
+---
+
 # SEO Requirements
 
 All pages must include:
