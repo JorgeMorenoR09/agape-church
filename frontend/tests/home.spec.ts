@@ -8,8 +8,7 @@ test.describe('Home page', () => {
 
   test('has correct page title', async ({ page }) => {
     await page.goto('/es/');
-    const title = await page.title();
-    expect(title.length).toBeGreaterThan(0);
+    await expect(page).toHaveTitle('Agape Church — El amor hace la diferencia');
   });
 
   test('displays the main heading', async ({ page }) => {
@@ -28,8 +27,7 @@ test.describe('Home page', () => {
 test.describe('English version', () => {
   test('has correct page title', async ({ page }) => {
     await page.goto('/en/');
-    const title = await page.title();
-    expect(title.length).toBeGreaterThan(0);
+    await expect(page).toHaveTitle('Agape Church — Love Makes the Difference');
   });
 
   test('displays the main heading', async ({ page }) => {
